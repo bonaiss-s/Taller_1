@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class AgentController : MonoBehaviour
 {
-    public Vector2 movevalue;
+    public Vector3 movevalue;
 
     InputAction moveAction;
     void Start()

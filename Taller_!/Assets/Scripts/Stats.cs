@@ -9,7 +9,19 @@ public class Stats : MonoBehaviour
 
 public void Heal(float amount) => _vida = Mathf.Min(_vida + amount, _maxvida);
 
-public void SetSpeedMultiplier(float multiplier) => _veloci *= multiplier;
+public void TakeDamage(float amount)
+    {
+
+        if (_escudoboo)
+        {
+            _escudoboo = false;
+            return;
+        }
+        _vida = Mathf.Max(_vida - amount, 0);
+
+    }
+
+ public void SetSpeedMultiplier(float multiplier) => _veloci *= multiplier;
 
 public void SetShield(bool active) => _escudoboo = active;
 }

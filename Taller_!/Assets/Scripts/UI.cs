@@ -24,11 +24,24 @@ public class PowerUpUI : MonoBehaviour
 
     public void ApplySelectedPowerUp()
     {
-        if (!ValidateReferences()) return; 
+        if (!ValidateReferences()) return;
 
-        if (!TryReadValue(out float val)) return; 
-
-        if (!ValidateRules(val)) return; 
+        float val = 0;
+    
+        if (currentSelection != PowerType.shield)
+        {
+            if (!TryReadValue(out val)) return;
+            if (!ValidateRules(val)) return;
+        }
+        else
+        {
+         
+            if (player._escudoboo)
+            {
+                messageText.text = "Error: Escudo ya activo";
+                return;
+            }
+        }
 
         ApplyPowerUp(val); 
     }
@@ -83,7 +96,8 @@ public class PowerUpUI : MonoBehaviour
                 messageText.text = $"Velocidad actual: {player._veloci}"; 
                 break;
             case PowerType.damage:
-                messageText.text = $"Daño potenciado en: {value}"; 
+                player.TakeDamage(value);
+                messageText.text = $"¡Daño recibido! Vida restante: {player._vida}"; 
                 break;
         }
     }
